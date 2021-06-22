@@ -16,7 +16,7 @@ body{
     align-items: center;
 }
 .slider{
-    border: 1px solid grey;
+    border: 0.5px solid rgb(190, 189, 189);
     width: 100%;
     border-radius: 5px;
     position: relative;
@@ -28,7 +28,6 @@ body{
     border-radius: 50%; 
     position: absolute;
     top: -10px;
-    cursor: grab;
 }
 .value-display{
     color: #57a063;
@@ -36,4 +35,11 @@ body{
 }
 .value {
     font-weight: bolder;
+}
+.progress-highlight{
+    border: 2px solid rgb(74, 150, 87);
+    background-color: rgb(74, 150, 87);
+    position: absolute;
+    top: -1px;
+    width: 0px;
 }
