@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Custom Slider</h1>
+      <div class="slider">
+        <div class="circle"></div>
+      </div>
+      <div class="value-display">Value: <span class="value">0</span></div>
+    </div>
+    <script>
+      const circleEl = document.querySelector(".circle");
+      const sliderEl = document.querySelector(".slider");
+      const valueEl = document.querySelector(".value");
+
+      console.log(circleEl.offsetLeft);
+      const mousedownHandler = (e) => {
+        console.log("mouse clicked");
+        circleEl.style.cursor = "grabbing";
+        document.body.addEventListener("mousemove", mouseMoveHandler);
+      };
+      const mouseupHandler = () => {
+        circleEl.style.cursor = "grab";
+        document.body.removeEventListener("mousemove", mouseMoveHandler);
+      };
+      const mouseMoveHandler = (e) => {
+        console.log(e.clientX - sliderEl.offsetLeft, sliderEl.offsetWidth);
+        circleEl.style.left =
+          e.clientX - sliderEl.offsetLeft <= 0
+            ? 0 + "px"
+            : e.clientX - sliderEl.offsetLeft >= sliderEl.offsetWidth - 23
+            ? sliderEl.offsetWidth - 23 + "px"
+            : e.clientX - sliderEl.offsetLeft + "px";
+        valueEl.innerText = Math.floor(
+          (parseInt(circleEl.style.left) / 174) * 100
+        );
+      };
+      circleEl.addEventListener("mousedown", mousedownHandler);
+      document.body.addEventListener("mouseup", mouseupHandler);
+    </script>
+  </body>
+</html>
